@@ -19,25 +19,39 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeMount, reactive, useContext } from '@nuxtjs/composition-api'
+import {
+	defineComponent,
+	onBeforeMount,
+	reactive,
+	toRefs,
+	onMounted,
+	onBeforeUpdate,
+	onUpdated,
+	onBeforeUnmount,
+	onUnmounted,
+} from '@nuxtjs/composition-api'
+// Composition API 형태의 기본 틀
 export default defineComponent({
 	name: 'LayoutAppbar',
+	// props required 옵션으로 필수 props 적용 가능
 	props: {
 		menuLength: {
 			type: Number,
 			default: 0,
 		},
 	},
+	// 모든 행위는 setup 에서 일어난다고 보면 된다.
 	setup(props) {
-		const context = usecontext()
 		interface IState {
 			menuItems: object[]
 		}
+
+		// state 기존의 data 와 같은 기능
 		const state = reactive<IState>({
 			menuItems: [],
 		})
 
-		const initMenuItems: void = () => {
+		const initMenuItems = (): void => {
 			for (let i = 0; i < props.menuLength; i++) {
 				const title: string = `Title ${i}`
 				state.menuItems.push({
@@ -46,12 +60,30 @@ export default defineComponent({
 			}
 		}
 
+		// 생명주기
 		onBeforeMount(() => {
-			initMenuItems(props.menuLength)
+			initMenuItems()
+			console.log(state.menuItems)
+			console.log('Vue2 beforeMount')
+		})
+		onMounted(() => {
+			console.log('Vue2 mounted')
+		})
+		onBeforeUpdate(() => {
+			console.log('Vue2 beforeUpdate')
+		})
+		onUpdated(() => {
+			console.log('Vue2 updated')
+		})
+		onBeforeUnmount(() => {
+			console.log('Vue2 beforeDestroy')
+		})
+		onUnmounted(() => {
+			console.log('Vue2 destroyed')
 		})
 
 		return {
-			state,
+			...toRefs(state),
 		}
 	},
 })
