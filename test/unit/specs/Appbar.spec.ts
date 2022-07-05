@@ -47,10 +47,16 @@
 // })
 
 import { shallowMount } from '@vue/test-utils'
-import Appbar from '@/components/layout/Appbar.vue'
+// import Vue from 'vue'
+import Footer from '@/components/layout/Footer.vue'
 
 describe('Appbar.vue', () => {
 	test('Appbar 호출 테스트', () => {
 		expect(true).toBe(true)
+	})
+
+	test('shallowMount', () => {
+		const wrapper = shallowMount(Footer)
+		expect(wrapper.isVueInstance()).toBeTruthy()
 	})
 })
