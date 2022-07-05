@@ -15,7 +15,7 @@
       "~/*": ["./*"],
       "@/*": ["./*"]
     },
-    "types": ["@nuxt/types", "@nuxtjs/axios", "@types/node", "vuetify", "@pinia/nuxt"],
+    "types": ["@nuxt/types", "@nuxtjs/axios", "@types/node", "vuetify", "@pinia/nuxt", "@types/jest"],
 
 
   },

@@ -10,7 +10,7 @@ import { defineComponent } from '@nuxtjs/composition-api'
 import api from '@/utils/api'
 export default defineComponent({
 	name: 'MainApi',
-	setup(props, context) {
+	setup() {
 		const test = async () => {
 			const res = await api.main.test()
 			console.log(res)
