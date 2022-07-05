@@ -19,7 +19,7 @@ const responseBody = (response: AxiosResponse) => response.data
 
 // cancleToken
 instance.interceptors.request.use(config => {
-	console.log('cancelToken add')
+	console.log('cancelToken add!')
 	const source = axios.CancelToken.source()
 	config.cancelToken = source.token
 	return config
